@@ -8,10 +8,14 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { EditComponent } from './studies/edit/edit.component';
+import { ListComponent } from './studies/list/list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
