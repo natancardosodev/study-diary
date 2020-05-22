@@ -7,38 +7,46 @@
     </div>
 </div>
 
-<div class="card mt-2" *ngFor="let study of studies | async">
-    <div class="card-body">
-        <h5 class="card-title">
-            <strong>{{study.subject}}</strong>
-        </h5>
-        <p class="card-text">
-            <em>Category:</em> {{study.category}}
-        </p>
-        <p class="card-text">
-            <em>Date:</em> {{study.date}}
-        </p>
-        <p class="card-text">
-            <em>Time:</em> {{study.time}}h
-        </p>
-        <p class="card-text">
-            <em>Level:</em> {{study.level}}
-        </p>
-        <p class="card-text">
-            <em>Type:</em> {{study.type}}
-        </p>
-        <small class="card-text">
-            <em>Note:</em> {{study.note}}
-        </small>
-    </div>
-    <div class="card-footer">
-        <button type="button" class="btn btn-default" (click)="edit(study, study.key)">Edit</button>
-        <button type="button" class="btn btn-danger ml-2" (click)="delete(study.key)">Remove</button>
-    </div>
-</div>
-
 <div *ngIf="!(studies | async)?.length">
     <div class="alert alert-warning" role="alert">
         There are no registered studies. Please register an item.
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4 mt-2" *ngFor="let study of studies | async">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <strong>{{study.subject}}</strong>
+                </h4>
+                <p class="card-text">
+                    <em>Category:</em> {{study.category}}
+                </p>
+                <div class="row">
+                    <p class="card-text col-6">
+                        <em>Date:</em> {{study.date}}
+                    </p>
+                    <p class="card-text col-6">
+                        <em>Time:</em> {{study.time}}h
+                    </p>
+                </div>
+                <div class="row">
+                    <p class="card-text col-6">
+                        <em>Level:</em> {{study.level}}
+                    </p>
+                    <p class="card-text col-6">
+                        <em>Type:</em> {{study.type}}
+                    </p>
+                </div>
+                <small class="card-text">
+                    <em>Note:</em> {{study.note}}
+                </small>
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-secondary" (click)="edit(study, study.key)">Edit</button>
+                <button type="button" class="btn btn-danger ml-2" (click)="delete(study.key)">Remove</button>
+            </div>
+        </div>
     </div>
 </div>
