@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { 
+import {
   AngularFireList,
   AngularFireObject,
   AngularFireDatabase
@@ -13,7 +13,7 @@ import { Study } from 'src/app/new/shared/study';
 export class CrudService {
 
   studiesRef: AngularFireList<any>;
-  studyRef: AngularFireObject<any>
+  studyRef: AngularFireObject<any>;
 
   constructor(
     private db: AngularFireDatabase
@@ -28,7 +28,7 @@ export class CrudService {
       level: study.level,
       type: study.type,
       note: study.note
-    })
+    });
   }
 
   GetStudy(id: string) {
@@ -50,11 +50,11 @@ export class CrudService {
       level: study.level,
       type: study.type,
       note: study.note
-    })
-  }  
+    });
+  }
 
-  DeleteStudy(id: string) { 
-    this.studyRef = this.db.object('study/'+id);
+  DeleteStudy(id: string) {
+    this.studyRef = this.db.object('study/' + id);
     this.studyRef.remove();
   }
 

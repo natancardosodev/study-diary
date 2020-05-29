@@ -24,7 +24,7 @@ export class StudyService {
   update(study: Study, key: string) {
     this.db.list('study').update(key, study)
       .catch((error: any) => {
-        console.error(error)
+        console.error(error);
       });
   }
 

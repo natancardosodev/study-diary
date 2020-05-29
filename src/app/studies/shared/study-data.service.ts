@@ -20,7 +20,7 @@ export class StudyDataService {
   changeStudy(study: Study, key: string) {
     this.studySource.next({
       study: Study,
-      key: key
+      key
     });
   }
 

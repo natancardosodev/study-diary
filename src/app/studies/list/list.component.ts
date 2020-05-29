@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.studies = this.studyService.getAll();
     console.log(this.studies);
-    
+
   }
 
   delete(key: string) {
@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
   }
 
   edit(study: Study, key: string) {
-    this.studyDataService.changeStudy(study, key)
+    this.studyDataService.changeStudy(study, key);
   }
 
 }

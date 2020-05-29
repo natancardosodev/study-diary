@@ -11,7 +11,7 @@ import { StudyDataService } from '../shared/study-data.service';
 })
 export class EditComponent implements OnInit {
   study: Study;
-  key: string = "";
+  key = '';
 
   constructor(
     private studyService: StudyService,
@@ -32,7 +32,7 @@ export class EditComponent implements OnInit {
         this.study.note = data.study.note;
         this.key = data.key;
       }
-    })
+    });
   }
 
   onSubmit() {

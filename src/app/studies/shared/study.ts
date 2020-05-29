@@ -1,9 +1,9 @@
 export class Study {
-    subject: string = "";
-    category: string = "";
+    subject = '';
+    category = '';
     date: Date;
-    time: string = "";
-    level: string = "";
-    type: string = "";
-    note: string = "";
+    time = '';
+    level = '';
+    type = '';
+    note = '';
 }
