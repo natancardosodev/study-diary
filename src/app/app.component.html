@@ -1,7 +1,58 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row">
     <div class="col my-3">
       <router-outlet></router-outlet>
     </div>
+  </div>
+</div> -->
+
+<!-- Top navigation -->
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/study/register">
+    <span class="dasboard-text">Registration Studies</span>
+  </a>
+  <ul class="navbar-nav px-3">
+    <!-- <li class="nav-item text-nowrap">
+      <a class="nav-link" routerLink="/study/register">
+        <span class="user-image" style="background-image: url('assets/user.jpg')"></span>
+        Hello Admin
+      </a>
+    </li> -->
+  </ul>
+</nav>
+
+<!-- Sidebar navigation -->
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-md-block bg-light sidebar pt-3">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/study/register" routerLinkActive="active">
+              <i class="fas fa-plus pr-2"></i>Add Study
+            </a>
+          </li>
+
+          <!-- routerLink="/study" to navigate to study component -->
+          <!-- routerLinkActive="active" activates active class for component-->
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/study" routerLinkActive="active">
+              <i class="fas fa-list-ul pr-2"></i>Studies List
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+
+        <router-outlet></router-outlet>
+
+      </div>
+    </main>
+
   </div>
 </div>

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
+import { ToastrModule } from 'ngx-toastr';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -11,18 +12,27 @@ import { AppComponent } from './app.component';
 import { EditComponent } from './studies/edit/edit.component';
 import { ListComponent } from './studies/list/list.component';
 
+import { AddStudyComponent } from './new/add-study/add-study.component';
+import { EditStudyComponent } from './new/edit-study/edit-study.component';
+import { StudiesListComponent } from './new/studies-list/studies-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     EditComponent,
-    ListComponent
+    ListComponent,
+    AddStudyComponent,
+    EditStudyComponent,
+    StudiesListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
