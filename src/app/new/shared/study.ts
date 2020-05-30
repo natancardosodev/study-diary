@@ -1,5 +1,5 @@
 export interface Study {
-    $key: string;
+    // $key: string;
     subject: string;
     category: string;
     date: Date;

@@ -12,14 +12,14 @@ import { Study } from 'src/app/new/shared/study';
 })
 export class CrudService {
 
-  studiesRef: AngularFireList<any>;
-  studyRef: AngularFireObject<any>;
+  studiesRef: AngularFireList<Study>;
+  studyRef: AngularFireObject<Study>;
 
   constructor(
     private db: AngularFireDatabase
   ) { }
 
-  AddStudy(study: Study) {
+  AddStudy(study: Study): void {
     this.studiesRef.push({
       subject: study.subject,
       category: study.category,
@@ -31,17 +31,17 @@ export class CrudService {
     });
   }
 
-  GetStudy(id: string) {
+  GetStudy(id: string): AngularFireObject<Study> {
     this.studyRef = this.db.object('study/' + id);
     return this.studyRef;
   }
 
-  GetStudysList() {
+  GetStudysList(): AngularFireList<Study> {
     this.studiesRef = this.db.list('study');
     return this.studiesRef;
   }
 
-  UpdateStudy(study: Study) {
+  UpdateStudy(study: Study): void {
     this.studyRef.update({
       subject: study.subject,
       category: study.category,
@@ -53,7 +53,7 @@ export class CrudService {
     });
   }
 
-  DeleteStudy(id: string) {
+  DeleteStudy(id: string): void {
     this.studyRef = this.db.object('study/' + id);
     this.studyRef.remove();
   }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { Study } from './study';
 
@@ -14,21 +15,21 @@ export class StudyService {
     private db: AngularFireDatabase
   ) { }
 
-  insert(study: Study) {
+  insert(study: Study): void {
     this.db.list('study').push(study)
-      .then((result: any) => {
-        console.log(result.key);
-      });
+      .then(
+        (result: any) => { console.log(result.key); }
+      );
   }
 
-  update(study: Study, key: string) {
+  update(study: Study, key: string): void {
     this.db.list('study').update(key, study)
-      .catch((error: any) => {
-        console.error(error);
-      });
+      .catch(
+        (error: any) => { console.error(error); }
+      );
   }
 
-  getAll() {
+  getAll(): Observable<any> {
     return this.db.list('study')
       .snapshotChanges()
       .pipe(
@@ -41,7 +42,7 @@ export class StudyService {
       );
   }
 
-  delete(key: string) {
+  delete(key: string): void {
     this.db.object(`study/${key}`).remove();
   }
 }

@@ -7,30 +7,29 @@ import { StudyDataService } from '../shared/study-data.service';
 import { Study } from '../shared/study';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  studies: Observable<any>;
+    studies: Observable<Study>;
 
-  constructor(
-    private studyService: StudyService,
-    private studyDataService: StudyDataService
-  ) { }
+    constructor(
+        private studyService: StudyService,
+        private studyDataService: StudyDataService
+    ) { }
 
-  ngOnInit(): void {
-    this.studies = this.studyService.getAll();
-    console.log(this.studies);
+    ngOnInit(): void {
+        this.studies = this.studyService.getAll();
+        console.log(this.studies);
+    }
 
-  }
+    delete(key: string): void {
+        this.studyService.delete(key);
+    }
 
-  delete(key: string) {
-    this.studyService.delete(key);
-  }
-
-  edit(study: Study, key: string) {
-    this.studyDataService.changeStudy(study, key);
-  }
+    edit(study: Study, key: string): void {
+        this.studyDataService.changeStudy(study, key);
+    }
 
 }

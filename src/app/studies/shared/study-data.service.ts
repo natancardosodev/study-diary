@@ -15,7 +15,7 @@ export class StudyDataService {
   });
   currentStudy = this.studySource.asObservable();
 
-  constructor() { }
+  // constructor() { }
 
   changeStudy(study: Study, key: string) {
     this.studySource.next({
