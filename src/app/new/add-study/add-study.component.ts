@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
+
 import { CrudService } from '../shared/crud.service';
+import { categories, levels, types } from '../shared/Const';
 
 @Component({
     selector: 'app-add-study',
@@ -10,6 +12,10 @@ import { CrudService } from '../shared/crud.service';
     styleUrls: ['./add-study.component.scss']
 })
 export class AddStudyComponent implements OnInit {
+
+    categories = categories;
+    levels = levels;
+    types = types;
 
     public studyForm: FormGroup;
 
@@ -20,12 +26,11 @@ export class AddStudyComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.crudApi.GetStudysList();
-        this.studenForm();
+        this.crudApi.getStudiesList();
+        this.dadosForm();
     }
 
-    // Reactive student form
-    studenForm(): void {
+    dadosForm(): void {
         this.studyForm = this.fb.group({
             subject: ['', [Validators.required]],
             category: ['', [Validators.required]],
@@ -33,9 +38,7 @@ export class AddStudyComponent implements OnInit {
             time: ['', [Validators.required]],
             level: ['', [Validators.required]],
             type: ['', [Validators.required]],
-            note: ['', [Validators.required]],
-            firstName: ['', [Validators.required]],
-            lastName: ['', [Validators.required]],
+            note: [''],
             // // email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
             // mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
         });
@@ -69,22 +72,13 @@ export class AddStudyComponent implements OnInit {
         return this.studyForm.get('note');
     }
 
-    get firstName(): AbstractControl {
-        return this.studyForm.get('firstName');
-    }
-
-    get lastName(): AbstractControl {
-        return this.studyForm.get('lastName');
-    }
-
     resetForm(): void {
         this.studyForm.reset();
     }
 
     submitStudyData(): void {
-        this.crudApi.AddStudy(this.studyForm.value);
+        this.crudApi.addStudy(this.studyForm.value);
         this.toastr.success(`${this.studyForm.controls.subject.value} successfully added!`);
         this.resetForm();
     }
-
 }

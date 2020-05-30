@@ -19,7 +19,7 @@ export class CrudService {
     private db: AngularFireDatabase
   ) { }
 
-  AddStudy(study: Study): void {
+  addStudy(study: Study): void {
     this.studiesRef.push({
       subject: study.subject,
       category: study.category,
@@ -31,17 +31,17 @@ export class CrudService {
     });
   }
 
-  GetStudy(id: string): AngularFireObject<Study> {
+  getStudy(id: string): AngularFireObject<Study> {
     this.studyRef = this.db.object('study/' + id);
     return this.studyRef;
   }
 
-  GetStudysList(): AngularFireList<Study> {
+  getStudiesList(): AngularFireList<Study> {
     this.studiesRef = this.db.list('study');
     return this.studiesRef;
   }
 
-  UpdateStudy(study: Study): void {
+  updateStudy(study: Study): void {
     this.studyRef.update({
       subject: study.subject,
       category: study.category,
@@ -53,7 +53,7 @@ export class CrudService {
     });
   }
 
-  DeleteStudy(id: string): void {
+  deleteStudy(id: string): void {
     this.studyRef = this.db.object('study/' + id);
     this.studyRef.remove();
   }

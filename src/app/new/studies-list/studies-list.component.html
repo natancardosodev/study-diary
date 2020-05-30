@@ -1,1 +1,55 @@
-<p>studies-list works!</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Studies List</h1>
+    <a routerLink="/study/register" class="btn btn-success" *ngIf="hideWhenNoStudy">
+        <i class="fas fa-plus custom-fa-plus"></i>
+        Add Study
+    </a>
+</div>
+
+<div class="pricing-header mx-auto">
+
+    <div class="no-data text-center" *ngIf="preLoader">
+        <!-- <img src="assets/preloader.gif" class="preloader-icon" alt="No study"> -->
+    </div>
+
+    <div class="no-data text-center" *ngIf="noData">
+        <!-- <img src="assets/no-study.svg" class="nodata-msg" alt="No study"> -->
+        <p class="nodata-msg">No study added yet!</p>
+        <a routerLink="/study/register" class="btn btn-success">
+            <i class="fas fa-plus custom-fa-plus"></i>
+            Add Study
+        </a>
+    </div>
+
+    <!-- Showing studies data -->
+    <div class="table-responsive" *ngIf="hideWhenNoStudy">
+        <table class="table table-hover table-responsive-sm table-responsive-md table-responsive-lg">
+            <thead>
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Type</th>
+                    <th class="text-center" scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let study of studies | paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">
+                    <td>{{study.category}}</td>
+                    <td>{{study.date}}</td>
+                    <td>{{study.time}}h</td>
+                    <td>{{study.level}}</td>
+                    <td>{{study.type}}</td>
+                    <td class="text-center action-block">
+                        <i class="far fa-edit" routerLink="/study/edit/{{study.$key}}"></i>
+                        <i class="far fa-plus-square px-1" (click)="moreInfo(study)"></i>
+                        <i class="far fa-trash-alt" (click)="deleteStudy(study)"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Pagination -->
+    <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
+</div>
