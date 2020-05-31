@@ -12,18 +12,13 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { EditComponent } from './studies/edit/edit.component';
-import { ListComponent } from './studies/list/list.component';
-
-import { AddStudyComponent } from './new/add-study/add-study.component';
-import { EditStudyComponent } from './new/edit-study/edit-study.component';
-import { StudiesListComponent } from './new/studies-list/studies-list.component';
+import { AddStudyComponent } from './study/add-study/add-study.component';
+import { EditStudyComponent } from './study/edit-study/edit-study.component';
+import { StudiesListComponent } from './study/studies-list/studies-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditComponent,
-    ListComponent,
     AddStudyComponent,
     EditStudyComponent,
     StudiesListComponent
