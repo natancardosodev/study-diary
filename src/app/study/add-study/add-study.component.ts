@@ -39,7 +39,7 @@ export class AddStudyComponent implements OnInit {
             level: ['', [Validators.required]],
             type: ['', [Validators.required]],
             note: [''],
-            // // email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
+            // email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
             // mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
         });
     }

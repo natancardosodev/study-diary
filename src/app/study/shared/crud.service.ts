@@ -20,7 +20,7 @@ export class CrudService {
   ) { }
 
   addStudy(study: Study): void {
-    this.studiesRef.push({
+    void this.studiesRef.push({
       subject: study.subject,
       category: study.category,
       date: study.date,
@@ -42,7 +42,7 @@ export class CrudService {
   }
 
   updateStudy(study: Study): void {
-    this.studyRef.update({
+    void this.studyRef.update({
       subject: study.subject,
       category: study.category,
       date: study.date,
@@ -55,7 +55,7 @@ export class CrudService {
 
   deleteStudy(id: string): void {
     this.studyRef = this.db.object('study/' + id);
-    this.studyRef.remove();
+    void this.studyRef.remove();
   }
 
 }

@@ -37,7 +37,7 @@ export class StudiesListComponent implements OnInit {
     })
   }
 
-  dataState(): any {     
+  dataState(): void {     
     this.crudApi.getStudiesList().valueChanges().subscribe(data => {
       this.preLoader = false;
 
@@ -51,8 +51,8 @@ export class StudiesListComponent implements OnInit {
     })
   }
 
-  deleteStudy(study): any {
-    Swal.fire({
+  deleteStudy(study): void {
+    void Swal.fire({
       title: 'Are sure you want to delete?',
       text: "You won't be able to revert this!",
       icon: 'warning',
@@ -62,8 +62,8 @@ export class StudiesListComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        this.crudApi.deleteStudy(study.$key);
-        Swal.fire(
+        this.crudApi.deleteStudy(study.$key as string);
+        void Swal.fire(
           'Successfully deleted!',
           '',
           'success'
@@ -71,7 +71,7 @@ export class StudiesListComponent implements OnInit {
       } else if (
         result.dismiss === Swal.DismissReason.cancel
       ) {
-        Swal.fire(
+        void Swal.fire(
           'Cancelled',
           'The record is safe.',
           'error'
@@ -80,9 +80,9 @@ export class StudiesListComponent implements OnInit {
     })
   }
 
-  moreInfo(study): any {  
+  moreInfo(study: Study): void {  
     if (study.note) {
-      Swal.fire({
+      void Swal.fire({
         title: study.subject,
         html:
           `<strong>Category:</strong> ${study.category}<br>

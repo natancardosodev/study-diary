@@ -1,36 +1,31 @@
 # StudyDiary
+This Angular application aims to record a person's daily studies.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
+## Technology
+- Angular 9
+- Firebase 7.14
+- Bootstrap 4
+- SweetAlert 2
+- ngx-pagination 5
+- ngx-toastr 12
+- ESLint (In place of the TSLint)
 
-## Firebase
-Deve-se criar um projeto e um realtime databse, criar um app para web e capturar as configurações.
+## Instalation
+Run the commands below on the terminal, being in the desired directory to run the project.
+```shell
+git clone git@github.com:natancardosodev/study-diary.git
+cd study-diary
+npm install
+```
+## Execution
+You must create a project in Firebase and a realtime database, create a web app, capture the settings and put it in the file `src/environments/firebase.ts`
+```shell
+npm run start
+```
+Then open the browser at the address: http://localhost:4200/study
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-## ESLint
-
+### ESLint
+To add ESLint, the following steps were taken:
 ```shell
 npm install -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser @typescript-eslint/eslint-plugin-tslint
 npx tslint-to-eslint-config

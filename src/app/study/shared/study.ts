@@ -2,7 +2,7 @@ export interface Study {
     // $key: string;
     subject: string;
     category: string;
-    date: Date;
+    date: string;
     time: string;
     level: string;
     type: string;
