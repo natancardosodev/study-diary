@@ -5,7 +5,7 @@ import {
   AngularFireDatabase
 } from '@angular/fire/database';
 
-import { Study } from 'src/app/new/shared/study';
+import { Study } from 'src/app/study/shared/study';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Subscription } from 'rxjs';
-import { ToastrService, ActiveToast } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
+
 import { CrudService } from '../shared/crud.service';
 import { Study } from '../shared/study';
 
@@ -17,13 +18,11 @@ export class StudiesListComponent implements OnInit {
   hideWhenNoStudy = false;
   noData = false;
   preLoader = true;
-  
 
   constructor(
     public crudApi: CrudService,
     public toastr: ToastrService
   ){ }
-
 
   ngOnInit(): void {
     this.dataState();
@@ -53,15 +52,47 @@ export class StudiesListComponent implements OnInit {
   }
 
   deleteStudy(study): any {
-    if (window.confirm('Are sure you want to delete this study ?')) {
-      this.crudApi.deleteStudy(study.$key)
-      this.toastr.success(`${study.firstName} successfully deleted!`);
-    }
+    Swal.fire({
+      title: 'Are sure you want to delete?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.crudApi.deleteStudy(study.$key);
+        Swal.fire(
+          'Successfully deleted!',
+          '',
+          'success'
+        )
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        Swal.fire(
+          'Cancelled',
+          'The record is safe.',
+          'error'
+        )
+      }
+    })
   }
 
   moreInfo(study): any {  
     if (study.note) {
-      this.toastr.success(study.note);
+      Swal.fire({
+        title: study.subject,
+        html:
+          `<strong>Category:</strong> ${study.category}<br>
+          <strong>Type:</strong> ${study.type} - <strong>Level:</strong> ${study.level}<br>
+          <strong>Date:</strong> ${study.date} - <strong>Time:</strong> ${study.time}h<br>
+          <strong>Note:</strong> ${study.note}`,
+        showCloseButton: true,
+        showCancelButton: false,
+        showConfirmButton: false
+      });
     } else {
       this.toastr.error('There is no registered note.')
     }
