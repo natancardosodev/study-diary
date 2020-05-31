@@ -78,7 +78,7 @@ export class AddStudyComponent implements OnInit {
 
     submitStudyData(): void {
         this.crudApi.addStudy(this.studyForm.value);
-        this.toastr.success(`${this.studyForm.controls.subject.value} successfully added!`);
+        this.toastr.success(`${this.studyForm.controls.subject.value as string} successfully added!`);
         this.resetForm();
     }
 }

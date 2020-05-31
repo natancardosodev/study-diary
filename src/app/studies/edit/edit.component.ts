@@ -23,13 +23,13 @@ export class EditComponent implements OnInit {
         this.studyDataService.currentStudy.subscribe((data) => {
             if (data.study && data.key) {
                 this.study = new Study();
-                this.study.subject = data.study.subject;
-                this.study.category = data.study.category;
-                this.study.date = data.study.date;
-                this.study.time = data.study.time;
-                this.study.level = data.study.level;
-                this.study.type = data.study.type;
-                this.study.note = data.study.note;
+                this.study.subject = data.study.subject as string;
+                this.study.category = data.study.category as string;
+                this.study.date = data.study.date as Date;
+                this.study.time = data.study.time as string;
+                this.study.level = data.study.level as string;
+                this.study.type = data.study.type as string;
+                this.study.note = data.study.note as string;
                 this.key = data.key;
             }
         });

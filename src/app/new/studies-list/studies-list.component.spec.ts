@@ -7,7 +7,7 @@ describe('StudiesListComponent', () => {
   let fixture: ComponentFixture<StudiesListComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    void TestBed.configureTestingModule({
       declarations: [ StudiesListComponent ]
     })
     .compileComponents();
@@ -20,6 +20,6 @@ describe('StudiesListComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    void expect(component).toBeTruthy();
   });
 });

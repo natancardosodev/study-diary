@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { ToastrService, ActiveToast } from 'ngx-toastr';
 import { CrudService } from '../shared/crud.service';
 import { Study } from '../shared/study';
 
@@ -11,11 +12,11 @@ import { Study } from '../shared/study';
 })
 export class StudiesListComponent implements OnInit {
   
-  p: number = 1;
+  p = 1;
   studies: Study[];
-  hideWhenNoStudy: boolean = false;
-  noData: boolean = false;
-  preLoader: boolean = true;
+  hideWhenNoStudy = false;
+  noData = false;
+  preLoader = true;
   
 
   constructor(
@@ -24,20 +25,20 @@ export class StudiesListComponent implements OnInit {
   ){ }
 
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dataState();
-    let s = this.crudApi.getStudiesList(); 
-    s.snapshotChanges().subscribe(data => {
+    const list = this.crudApi.getStudiesList(); 
+    list.snapshotChanges().subscribe(data => {
       this.studies = [];
       data.forEach(item => {
-        let a = item.payload.toJSON(); 
-        a['$key'] = item.key;
-        this.studies.push(a as Study);
+        const data = item.payload.toJSON(); 
+        data['$key'] = item.key;
+        this.studies.push(data as Study);
       })
     })
   }
 
-  dataState() {     
+  dataState(): any {     
     this.crudApi.getStudiesList().valueChanges().subscribe(data => {
       this.preLoader = false;
 
@@ -51,14 +52,14 @@ export class StudiesListComponent implements OnInit {
     })
   }
 
-  deleteStudy(study) {
+  deleteStudy(study): any {
     if (window.confirm('Are sure you want to delete this study ?')) {
       this.crudApi.deleteStudy(study.$key)
       this.toastr.success(`${study.firstName} successfully deleted!`);
     }
   }
 
-  moreInfo(study) {  
+  moreInfo(study): any {  
     if (study.note) {
       this.toastr.success(study.note);
     } else {

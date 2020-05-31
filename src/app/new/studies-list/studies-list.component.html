@@ -36,7 +36,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let study of studies | paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">
-                    <td>{{study.category}}</td>
+                    <td scope="row">{{study.category}}</td>
                     <td>{{study.date}}</td>
                     <td>{{study.time}}h</td>
                     <td>{{study.level}}</td>
