@@ -1,1 +1,72 @@
-<p>edit-study works!</p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Edit Student Details</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="pricing-header form-block mx-auto">
+
+            <form [formGroup]="editForm" (ngSubmit)="updateForm()" novalidate>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label>Subject</label>
+                                <input type="text" formControlName="subject" class="form-control" required>
+                                <p *ngIf="subject.touched && subject.invalid" class="error">
+                                    <sup>*</sup>Please enter subject
+                                </p>
+                                <p *ngIf="subject.errors?.minlength" class="error">
+                                    <sup>*</sup>Name shouldn't be less than 2 words
+                                </p>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label>Category</label>
+                                <select formControlName="category" class="form-control" id="category" required>
+                                    <option></option>
+                                    <option *ngFor="let category of categories">{{category}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 mb-3">
+                                <label>Date</label>
+                                <input type="text" formControlName="date" class="form-control" required>
+                            </div>
+            
+                            <div class="col-md-6 col-sm-12 mb-3">
+                                <label>Time</label>
+                                <input type="text" formControlName="time" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="level">Level</label>
+                                <select formControlName="level" class="form-control" id="level" required>
+                                    <option></option>
+                                    <option *ngFor="let level of levels">{{level}}</option>
+                                </select>
+                            </div>
+            
+                            <div class="form-group col-md-6 col-sm-12">
+                                <label for="type">Type</label>
+                                <select formControlName="type" class="form-control" id="type" required>
+                                    <option></option>
+                                    <option *ngFor="let type of types">{{type}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="note">Note</label>
+                            <textarea formControlName="note" id="note" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="form-group text-right">
+                            <button type="button" class="btn btn-outline-secondary gap-right mr-2" (click)="goBack()">Cancel</button>
+                            <button type="submit" class="btn btn-success" [disabled]="editForm.invalid">Update Study</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
