@@ -27,7 +27,8 @@ module.exports = {
     "parserOptions": {
         "project": "tsconfig.json",
         "ecmaVersion": 2020,
-        "sourceType": "module"
+        "sourceType": "module",
+        "extraFileExtensions": ['.html', '.scss']
     },
     "plugins": [
         "@typescript-eslint",

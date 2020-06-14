@@ -51,7 +51,8 @@ export class StudiesListComponent implements OnInit {
     })
   }
 
-  deleteStudy(study): void {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+  deleteStudy(study: any): void {
     void Swal.fire({
       title: 'Are sure you want to delete?',
       text: "You won't be able to revert this!",
@@ -62,7 +63,7 @@ export class StudiesListComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        this.crudApi.deleteStudy(study.$key as string);
+        this.crudApi.deleteStudy(study.$key as string); //eslint-disable-line @typescript-eslint/no-unsafe-member-access
         void Swal.fire(
           'Successfully deleted!',
           '',
@@ -85,12 +86,11 @@ export class StudiesListComponent implements OnInit {
       void Swal.fire({
         title: study.subject,
         html:
-          `<strong>Category:</strong> ${study.category as string}<br>
-          <strong>Type:</strong> ${study.type as string} - <strong>Level:</strong> ${study.level as string}<br>
-          <strong>Date:</strong> 
-          ${new Date(study.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10) as string} - 
-          <strong>Time:</strong> ${study.time as string}h<br>
-          <strong>Note:</strong> ${study.note as string}`,
+          `<strong>Category:</strong> ${study.category}<br>
+          <strong>Type:</strong> ${study.type} - <strong>Level:</strong> ${study.level}<br>
+          <strong>Date:</strong> ${new Date(study.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10)} - 
+          <strong>Time:</strong> ${study.time}h<br>
+          <strong>Note:</strong> ${study.note}`,
         showCloseButton: true,
         showCancelButton: false,
         showConfirmButton: false

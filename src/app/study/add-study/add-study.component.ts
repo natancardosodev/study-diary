@@ -35,13 +35,13 @@ export class AddStudyComponent implements OnInit {
 
     dadosForm(): void {
         this.studyForm = this.fb.group({
-            subject: ['', [Validators.required]],
-            category: ['', [Validators.required]],
-            date: ['', [Validators.required]],
-            time: ['', [Validators.required]],
-            level: ['', [Validators.required]],
-            type: ['', [Validators.required]],
-            note: [''],
+            subject: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
+            category: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
+            date: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
+            time: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
+            level: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
+            type: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
+            note: [''], // eslint-disable-line @typescript-eslint/unbound-method
             // email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
             // mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
         });

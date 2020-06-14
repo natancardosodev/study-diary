@@ -71,13 +71,13 @@ export class EditStudyComponent implements OnInit {
 
   updateStudentData(): void {
     this.editForm = this.fb.group({
-      subject: ['', [Validators.required, Validators.minLength(5)]],
-      category: ['', Validators.required],
-      date: ['', Validators.required],
-      time: ['', Validators.required],
-      level: ['', Validators.required],
-      type: ['', Validators.required],
-      note: [''],
+      subject: ['', [Validators.required, Validators.minLength(5)]], // eslint-disable-line @typescript-eslint/unbound-method
+      category: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+      date: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+      time: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+      level: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+      type: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+      note: [''], // eslint-disable-line @typescript-eslint/unbound-method
     })
   }
 
