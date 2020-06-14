@@ -85,10 +85,12 @@ export class StudiesListComponent implements OnInit {
       void Swal.fire({
         title: study.subject,
         html:
-          `<strong>Category:</strong> ${study.category}<br>
-          <strong>Type:</strong> ${study.type} - <strong>Level:</strong> ${study.level}<br>
-          <strong>Date:</strong> ${study.date} - <strong>Time:</strong> ${study.time}h<br>
-          <strong>Note:</strong> ${study.note}`,
+          `<strong>Category:</strong> ${study.category as string}<br>
+          <strong>Type:</strong> ${study.type as string} - <strong>Level:</strong> ${study.level as string}<br>
+          <strong>Date:</strong> 
+          ${new Date(study.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10) as string} - 
+          <strong>Time:</strong> ${study.time as string}h<br>
+          <strong>Note:</strong> ${study.note as string}`,
         showCloseButton: true,
         showCancelButton: false,
         showConfirmButton: false

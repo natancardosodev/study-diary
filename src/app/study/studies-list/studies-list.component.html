@@ -5,11 +5,10 @@
 <div class="pricing-header mx-auto">
 
     <div class="no-data text-center" *ngIf="preLoader">
-        <!-- <img src="assets/preloader.gif" class="preloader-icon" alt="No study"> -->
+        <i class="fas fa-spinner fa-pulse fa-3x mt-5"></i>
     </div>
 
     <div class="no-data text-center" *ngIf="noData">
-        <!-- <img src="assets/no-study.svg" class="nodata-msg" alt="No study"> -->
         <p class="nodata-msg">No study added yet!</p>
         <a routerLink="/study/register" class="btn btn-success">
             <i class="fas fa-plus custom-fa-plus"></i>
@@ -33,7 +32,7 @@
                 <tr *ngFor="let study of studies | paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">
                     <td scope="row">{{study.subject}}</td>
                     <td>{{study.category}}</td>
-                    <td>{{study.date}}</td>
+                    <td>{{study.date | date: 'dd/MM/yyyy' }}</td>
                     <td>{{study.level}}</td>
                     <td class="text-center action-block">
                         <i class="far fa-edit" routerLink="/study/edit/{{study.$key}}"></i>

@@ -18,6 +18,10 @@ export class EditStudyComponent implements OnInit {
   public categories = categories;
   public levels = levels;
   public types = types;
+  public dateConfig = { 
+    isAnimated: true,
+    dateInputFormat: 'DD/MM/YYYY'
+  };
 
   constructor(
     private crudApi: CrudService,
@@ -32,8 +36,9 @@ export class EditStudyComponent implements OnInit {
     this.updateStudentData();
     const id = this.actRoute.snapshot.paramMap.get('id');
     this.crudApi.getStudy(id).valueChanges().subscribe(data => {
-      this.editForm.setValue(data)
-    })
+      data.date = new Date(data.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
+      this.editForm.setValue(data);
+    });
   }
 
   get subject(): AbstractControl {

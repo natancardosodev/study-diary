@@ -13,10 +13,13 @@ import { categories, levels, types } from '../shared/Const';
 })
 export class AddStudyComponent implements OnInit {
 
-    categories = categories;
-    levels = levels;
-    types = types;
-
+    public categories = categories;
+    public levels = levels;
+    public types = types;
+    public dateConfig = { 
+        isAnimated: true,
+        dateInputFormat: 'DD/MM/YYYY'
+    };
     public studyForm: FormGroup;
 
     constructor(
