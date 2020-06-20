@@ -6,7 +6,7 @@ import { StudiesListComponent } from './study/studies-list/studies-list.componen
 import { EditStudyComponent } from './study/edit-study/edit-study.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/study/register', pathMatch: 'full' },
+  { path: '', redirectTo: '/study', pathMatch: 'full' },
   { path: 'study/register', component: AddStudyComponent },
   { path: 'study', component: StudiesListComponent },
   { path: 'study/edit/:id', component: EditStudyComponent }
