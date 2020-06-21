@@ -100,7 +100,8 @@ export class EditStudyComponent implements OnInit {
         }
 
         const values: FormControl = this.editForm.value as FormControl;
-        values['date'] = values['date'].length > 10
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        values['date'] = values['date'].length > 10 //eslint-disable-line @typescript-eslint/no-unsafe-member-access
             ? new Date(values['date']).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10)
             : values['date'];
         this.crudApi.updateStudy(this.editForm.value);
