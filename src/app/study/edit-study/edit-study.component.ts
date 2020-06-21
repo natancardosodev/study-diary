@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
+import { ConnectionService } from 'ng-connection-service';
+
 import { CrudService } from '../shared/crud.service';
 import { categories, levels, types } from '../shared/Const';
 
@@ -22,6 +24,7 @@ export class EditStudyComponent implements OnInit {
         isAnimated: true,
         dateInputFormat: 'DD/MM/YYYY'
     };
+    public isConnected = true;
 
     constructor (
         private crudApi: CrudService,
@@ -29,8 +32,13 @@ export class EditStudyComponent implements OnInit {
         private location: Location,
         private actRoute: ActivatedRoute,
         private router: Router,
+        private connectionService: ConnectionService,
         private toastr: ToastrService
-    ) { }
+    ) {
+        this.connectionService.monitor().subscribe(isConnected => {
+            this.isConnected = isConnected;
+        });
+    }
 
     ngOnInit (): void {
         this.updateStudentData();
@@ -85,6 +93,12 @@ export class EditStudyComponent implements OnInit {
     }
 
     updateForm (): void {
+        if (!this.isConnected) {
+            this.toastr.error('There is no internet connection!');
+
+            return;
+        }
+
         const values: FormControl = this.editForm.value as FormControl;
         values['date'] = values['date'].length > 10
             ? new Date(values['date']).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10)

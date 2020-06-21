@@ -6,6 +6,7 @@ This Angular application aims to record a person's daily studies.
 - PWA
 - Firebase 7.14
 - Bootstrap 4
+- FontAwesome 5
 - SweetAlert 2
 - ngx-pagination 5
 - ngx-toastr 12

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
+import { ConnectionService } from 'ng-connection-service';
 
 import { CrudService } from '../shared/crud.service';
 import { Study } from '../shared/study';
@@ -18,11 +19,17 @@ export class StudiesListComponent implements OnInit {
     hideWhenNoStudy = false;
     noData = false;
     preLoader = true;
+    isConnected = true;
 
     constructor (
         public crudApi: CrudService,
+        private connectionService: ConnectionService,
         public toastr: ToastrService
-    ){ }
+    ){
+        this.connectionService.monitor().subscribe(isConnected => {
+            this.isConnected = isConnected;
+        });
+    }
 
     ngOnInit (): void {
         this.dataState();

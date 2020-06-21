@@ -4,11 +4,11 @@
 
 <div class="pricing-header mx-auto">
 
-    <div class="no-data text-center" *ngIf="preLoader">
+    <div class="no-data text-center" *ngIf="preLoader && isConnected">
         <i class="fas fa-spinner fa-pulse fa-3x mt-5"></i>
     </div>
 
-    <div class="no-data text-center" *ngIf="noData">
+    <div class="no-data text-center" *ngIf="noData && isConnected">
         <p class="nodata-msg">No study added yet!</p>
         <a routerLink="/study/register" class="btn btn-success">
             <i class="fas fa-plus custom-fa-plus"></i>
@@ -16,8 +16,14 @@
         </a>
     </div>
 
+    <div *ngIf="!isConnected">
+        <div class="alert alert-danger" role="alert">
+            <i class="fas fa-wifi"></i> There is no internet connection!
+        </div>
+    </div>
+
     <!-- Showing studies data -->
-    <div class="table-responsive" *ngIf="hideWhenNoStudy">
+    <div class="table-responsive" *ngIf="hideWhenNoStudy && isConnected">
         <table class="table table-hover table-responsive-sm table-responsive-md table-responsive-lg">
             <thead>
                 <tr>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
+import { ConnectionService } from 'ng-connection-service';
 
 import { CrudService } from '../shared/crud.service';
 import { categories, levels, types } from '../shared/Const';
@@ -21,12 +22,18 @@ export class AddStudyComponent implements OnInit {
         dateInputFormat: 'DD/MM/YYYY'
     };
     public studyForm: FormGroup;
+    public isConnected = true;
 
     constructor (
         public crudApi: CrudService,
         public fb: FormBuilder,
+        private connectionService: ConnectionService,
         public toastr: ToastrService
-    ) { }
+    ) {
+        this.connectionService.monitor().subscribe(isConnected => {
+            this.isConnected = isConnected;
+        });
+    }
 
     ngOnInit (): void {
         this.crudApi.getStudiesList();
@@ -80,6 +87,12 @@ export class AddStudyComponent implements OnInit {
     }
 
     submitStudyData (): void {
+        if (!this.isConnected) {
+            this.toastr.error('There is no internet connection!');
+
+            return;
+        }
+
         const values: FormControl = this.studyForm.value as FormControl;
         values['date'] = new Date(values['date']).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
         this.crudApi.addStudy(this.studyForm.value);
