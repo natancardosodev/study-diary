@@ -86,7 +86,9 @@ export class EditStudyComponent implements OnInit {
 
     updateForm (): void {
         const values: FormControl = this.editForm.value as FormControl;
-        values['date'] = new Date(values['date']).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
+        values['date'] = values['date'].length > 10
+            ? new Date(values['date']).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10)
+            : values['date'];
         this.crudApi.updateStudy(this.editForm.value);
         this.toastr.success(`${this.editForm.controls['subject'].value as string} updated successfully`);
         void this.router.navigate(['study']);
