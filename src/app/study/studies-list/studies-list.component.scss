@@ -1,0 +1,13 @@
+.table i {
+    font-size: 1.2em;
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+@media (max-width: 768px) {
+    .break-phone {
+        display: none;
+    }
+}

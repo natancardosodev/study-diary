@@ -82,22 +82,18 @@ export class StudiesListComponent implements OnInit {
     }
 
     moreInfo (study: Study): void {
-        if (study.note) {
-            void Swal.fire({
-                title: study.subject,
-                html:
-          `<strong>Category:</strong> ${study.category}<br>
-          <strong>Type:</strong> ${study.type} - <strong>Level:</strong> ${study.level}<br>
-          <strong>Date:</strong> ${new Date(study.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10)} - 
-          <strong>Time:</strong> ${study.time}h<br>
-          <strong>Note:</strong> ${study.note}`,
-                showCloseButton: true,
-                showCancelButton: false,
-                showConfirmButton: false
-            });
-        } else {
-            this.toastr.error('There is no registered note.');
-        }
+        void Swal.fire({
+            title: study.subject,
+            html:
+        `<strong>Category:</strong> ${study.category}<br>
+        <strong>Type:</strong> ${study.type} - <strong>Level:</strong> ${study.level}<br>
+        <strong>Date:</strong> ${new Date(study.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10)} - 
+        <strong>Time:</strong> ${study.time}h<br>
+        <strong>Note:</strong> ${study.note || 'There is no registered note'}`,
+            showCloseButton: true,
+            showCancelButton: false,
+            showConfirmButton: false
+        });
     }
 
 }

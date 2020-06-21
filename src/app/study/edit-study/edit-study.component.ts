@@ -36,7 +36,6 @@ export class EditStudyComponent implements OnInit {
         this.updateStudentData();
         const id = this.actRoute.snapshot.paramMap.get('id');
         this.crudApi.getStudy(id).valueChanges().subscribe(data => {
-            data.date = new Date(data.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
             this.editForm.setValue(data);
         });
     }
@@ -74,7 +73,7 @@ export class EditStudyComponent implements OnInit {
             subject: ['', [Validators.required, Validators.minLength(5)]], // eslint-disable-line @typescript-eslint/unbound-method
             category: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
             date: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
-            time: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+            time: ['', [Validators.required, Validators.pattern('^[0-9]+$')]], // eslint-disable-line @typescript-eslint/unbound-method
             level: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
             type: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
             note: [''], // eslint-disable-line @typescript-eslint/unbound-method
@@ -86,6 +85,7 @@ export class EditStudyComponent implements OnInit {
     }
 
     updateForm (): void {
+        this.editForm.value.date = new Date(this.editForm.value.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
         this.crudApi.updateStudy(this.editForm.value);
         this.toastr.success(`${this.editForm.controls['subject'].value as string} updated successfully`);
         void this.router.navigate(['study']);

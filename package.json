@@ -2,7 +2,7 @@
   "name": "study-diary",
   "version": "1.0.0",
   "scripts": {
-    "start": "npm run lint:fix && ng serve",
+    "start": "ng serve",
     "build": "npm run lint && ng build --prod",
     "prod": "npm run build && cd dist/study-diary && ../../node_modules/.bin/http-server -o",
     "lint": "./node_modules/.bin/eslint src/app/** --ext .ts --quiet",

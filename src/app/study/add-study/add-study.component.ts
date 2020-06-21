@@ -38,7 +38,7 @@ export class AddStudyComponent implements OnInit {
             subject: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
             category: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
             date: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
-            time: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
+            time: ['', [Validators.required, Validators.pattern('^[0-9]+$')]], // eslint-disable-line @typescript-eslint/unbound-method
             level: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
             type: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
             note: [''], // eslint-disable-line @typescript-eslint/unbound-method
@@ -80,6 +80,7 @@ export class AddStudyComponent implements OnInit {
     }
 
     submitStudyData (): void {
+        this.studyForm.value.date = new Date(this.studyForm.value.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
         this.crudApi.addStudy(this.studyForm.value);
         this.toastr.success(`${this.studyForm.controls.subject.value as string} successfully added!`);
         this.resetForm();

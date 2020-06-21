@@ -16,7 +16,7 @@
                                 <p *ngIf="subject.touched && subject.invalid" class="error">
                                     <sup>*</sup>Please enter subject
                                 </p>
-                                <p *ngIf="subject.errors?.minlength" class="error">
+                                <p *ngIf="subject.errors?.minlength" class="text-danger">
                                     <sup>*</sup>Name shouldn't be less than 2 words
                                 </p>
                             </div>
@@ -38,6 +38,9 @@
                             <div class="col-md-6 col-sm-12 mb-3">
                                 <label>Time</label>
                                 <input type="text" formControlName="time" class="form-control" required>
+                                <p *ngIf="time.touched && time.invalid" class="text-danger"><sup>*</sup>
+                                    Please enter an number
+                                </p>
                             </div>
                         </div>
                         <div class="row">

@@ -3,6 +3,7 @@ This Angular application aims to record a person's daily studies.
 
 ## Technology
 - Angular 9
+- PWA
 - Firebase 7.14
 - Bootstrap 4
 - SweetAlert 2
@@ -23,6 +24,9 @@ You must create a project in Firebase and a realtime database, create a web app,
 npm run start
 ```
 Then open the browser at the address: http://localhost:4200/study
+
+### PWA
+This application is a Progressive Web App, which will have an experience and features similar to a mobile application.
 
 ### ESLint
 To add ESLint, the following steps were taken:
