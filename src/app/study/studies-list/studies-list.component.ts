@@ -87,8 +87,7 @@ export class StudiesListComponent implements OnInit {
             html:
         `<strong>Category:</strong> ${study.category}<br>
         <strong>Type:</strong> ${study.type} - <strong>Level:</strong> ${study.level}<br>
-        <strong>Date:</strong> ${new Date(study.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10)} - 
-        <strong>Time:</strong> ${study.time}h<br>
+        <strong>Date:</strong> ${study.date} - <strong>Time:</strong> ${study.time}h<br>
         <strong>Note:</strong> ${study.note || 'There is no registered note'}`,
             showCloseButton: true,
             showCancelButton: false,

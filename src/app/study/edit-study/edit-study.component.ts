@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
 import { CrudService } from '../shared/crud.service';
@@ -85,7 +85,8 @@ export class EditStudyComponent implements OnInit {
     }
 
     updateForm (): void {
-        this.editForm.value.date = new Date(this.editForm.value.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
+        const values: FormControl = this.editForm.value as FormControl;
+        values['date'] = new Date(values['date']).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
         this.crudApi.updateStudy(this.editForm.value);
         this.toastr.success(`${this.editForm.controls['subject'].value as string} updated successfully`);
         void this.router.navigate(['study']);

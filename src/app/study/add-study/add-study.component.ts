@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, AbstractControl, FormControl } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
 
@@ -80,7 +80,8 @@ export class AddStudyComponent implements OnInit {
     }
 
     submitStudyData (): void {
-        this.studyForm.value.date = new Date(this.studyForm.value.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
+        const values: FormControl = this.studyForm.value as FormControl;
+        values['date'] = new Date(values['date']).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
         this.crudApi.addStudy(this.studyForm.value);
         this.toastr.success(`${this.studyForm.controls.subject.value as string} successfully added!`);
         this.resetForm();
