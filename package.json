@@ -2,11 +2,12 @@
   "name": "study-diary",
   "version": "1.0.0",
   "scripts": {
-    "start": "ng serve",
+    "start": "npm run lint:fix && ng serve",
     "build": "npm run lint && ng build --prod",
     "prod": "npm run build && cd dist/study-diary && ../../node_modules/.bin/http-server -o",
+    "lint": "./node_modules/.bin/eslint src/app/** --ext .ts --quiet",
+    "lint:fix": "./node_modules/.bin/eslint src/app/** --ext .ts --quiet --fix",
     "test": "ng test",
-    "lint": "./node_modules/.bin/eslint src/app/** --ext .ts",
     "e2e": "ng e2e"
   },
   "private": true,

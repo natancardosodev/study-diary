@@ -16,24 +16,24 @@ export class AddStudyComponent implements OnInit {
     public categories = categories;
     public levels = levels;
     public types = types;
-    public dateConfig = { 
+    public dateConfig = {
         isAnimated: true,
         dateInputFormat: 'DD/MM/YYYY'
     };
     public studyForm: FormGroup;
 
-    constructor(
+    constructor (
         public crudApi: CrudService,
         public fb: FormBuilder,
         public toastr: ToastrService
     ) { }
 
-    ngOnInit(): void {
+    ngOnInit (): void {
         this.crudApi.getStudiesList();
         this.dadosForm();
     }
 
-    dadosForm(): void {
+    dadosForm (): void {
         this.studyForm = this.fb.group({
             subject: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
             category: ['', [Validators.required]], // eslint-disable-line @typescript-eslint/unbound-method
@@ -47,39 +47,39 @@ export class AddStudyComponent implements OnInit {
         });
     }
 
-    get subject(): AbstractControl {
+    get subject (): AbstractControl {
         return this.studyForm.get('subject');
     }
 
-    get category(): AbstractControl {
+    get category (): AbstractControl {
         return this.studyForm.get('category');
     }
 
-    get date(): AbstractControl {
+    get date (): AbstractControl {
         return this.studyForm.get('date');
     }
 
-    get time(): AbstractControl {
+    get time (): AbstractControl {
         return this.studyForm.get('time');
     }
 
-    get level(): AbstractControl {
+    get level (): AbstractControl {
         return this.studyForm.get('level');
     }
 
-    get type(): AbstractControl {
+    get type (): AbstractControl {
         return this.studyForm.get('type');
     }
 
-    get note(): AbstractControl {
+    get note (): AbstractControl {
         return this.studyForm.get('note');
     }
 
-    resetForm(): void {
+    resetForm (): void {
         this.studyForm.reset();
     }
 
-    submitStudyData(): void {
+    submitStudyData (): void {
         this.crudApi.addStudy(this.studyForm.value);
         this.toastr.success(`${this.studyForm.controls.subject.value as string} successfully added!`);
         this.resetForm();

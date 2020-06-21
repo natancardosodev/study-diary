@@ -28,13 +28,13 @@ module.exports = {
         "project": "tsconfig.json",
         "ecmaVersion": 2020,
         "sourceType": "module",
-        "extraFileExtensions": ['.html', '.scss']
+        // "extraFileExtensions": ['.html', '.scss']
     },
     "plugins": [
         "@typescript-eslint",
         "@typescript-eslint/tslint"
     ],
-    // "rules": {
+    "rules": {
     //     "@angular-eslint/component-class-suffix": "error",
     //     "@angular-eslint/component-selector": [
     //         "error",
@@ -103,18 +103,18 @@ module.exports = {
     //             "accessibility": "explicit"
     //         }
     //     ],
-    //     "@typescript-eslint/indent": [
-    //         "error",
-    //         4,
-    //         {
+        "@typescript-eslint/indent": [
+            "error",
+            4,
+            {
     //             "FunctionDeclaration": {
     //                 "parameters": "first"
     //             },
     //             "FunctionExpression": {
     //                 "parameters": "first"
     //             }
-    //         }
-    //     ],
+            }
+        ],
     //     "@typescript-eslint/interface-name-prefix": "off",
     //     "@typescript-eslint/member-delimiter-style": [
     //         "error",
@@ -130,16 +130,16 @@ module.exports = {
     //         }
     //     ],
     //     "@typescript-eslint/member-ordering": "error",
-    //     "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-empty-function": "off",
     //     "@typescript-eslint/no-empty-interface": "error",
-    //     "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-explicit-any": "off",
     //     "@typescript-eslint/no-inferrable-types": "error",
     //     "@typescript-eslint/no-misused-new": "error",
     //     "@typescript-eslint/no-namespace": "error",
     //     "@typescript-eslint/no-non-null-assertion": "error",
     //     "@typescript-eslint/no-parameter-properties": "off",
-    //     "@typescript-eslint/no-unused-expressions": "error",
-    //     "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/no-unused-expressions": "error",
+        "@typescript-eslint/no-use-before-define": "off",
     //     "@typescript-eslint/no-var-requires": "off",
     //     "@typescript-eslint/prefer-for-of": "error",
     //     "@typescript-eslint/prefer-function-type": "error",
@@ -148,10 +148,10 @@ module.exports = {
     //         "error",
     //         "single"
     //     ],
-    //     "@typescript-eslint/semi": [
-    //         "error",
-    //         "always"
-    //     ],
+        "@typescript-eslint/semi": [
+            "error",
+            "always"
+        ],
     //     "@typescript-eslint/triple-slash-reference": [
     //         "error",
     //         {
@@ -212,9 +212,9 @@ module.exports = {
     //     "no-bitwise": "error",
     //     "no-caller": "error",
     //     "no-cond-assign": "error",
-    //     "no-console": [
-    //         "error",
-    //         {
+        "no-console": [
+            "error",
+            {
     //             "allow": [
     //                 "log",
     //                 "warn",
@@ -236,8 +236,8 @@ module.exports = {
     //                 "timeStamp",
     //                 "context"
     //             ]
-    //         }
-    //     ],
+            }
+        ],
     //     "no-debugger": "error",
     //     "no-empty": "off",
     //     "no-eval": "error",
@@ -256,32 +256,32 @@ module.exports = {
     //         }
     //     ],
     //     "no-throw-literal": "error",
-    //     "no-trailing-spaces": "error",
+        "no-trailing-spaces": "error",
     //     "no-undef-init": "error",
     //     "no-underscore-dangle": "error",
     //     "no-unsafe-finally": "error",
     //     "no-unused-labels": "error",
-    //     "no-var": "error",
+        "no-var": "error",
     //     "object-shorthand": "error",
     //     "one-var": [
     //         "error",
     //         "never"
     //     ],
     //     "prefer-arrow/prefer-arrow-functions": "error",
-    //     "prefer-const": "error",
+        "prefer-const": "error",
     //     "quote-props": [
     //         "error",
     //         "as-needed"
     //     ],
     //     "radix": "error",
-    //     "space-before-function-paren": [
-    //         "error",
-    //         {
+        "space-before-function-paren": [
+            "error",
+            {
     //             "anonymous": "never",
     //             "asyncArrow": "always",
     //             "named": "never"
-    //         }
-    //     ],
+            }
+        ],
     //     "spaced-comment": [
     //         "error",
     //         "always",
@@ -310,5 +310,5 @@ module.exports = {
     //             }
     //         }
     //     ]
-    // }
+    }
 };

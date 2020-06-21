@@ -8,86 +8,86 @@ import { CrudService } from '../shared/crud.service';
 import { categories, levels, types } from '../shared/Const';
 
 @Component({
-  selector: 'app-edit-study',
-  templateUrl: './edit-study.component.html',
-  styleUrls: ['./edit-study.component.scss']
+    selector: 'app-edit-study',
+    templateUrl: './edit-study.component.html',
+    styleUrls: ['./edit-study.component.scss']
 })
 export class EditStudyComponent implements OnInit {
-  
-  public editForm: FormGroup;
-  public categories = categories;
-  public levels = levels;
-  public types = types;
-  public dateConfig = { 
-    isAnimated: true,
-    dateInputFormat: 'DD/MM/YYYY'
-  };
 
-  constructor(
-    private crudApi: CrudService,
-    private fb: FormBuilder,
-    private location: Location,
-    private actRoute: ActivatedRoute,
-    private router: Router,
-    private toastr: ToastrService
-  ) { }
+    public editForm: FormGroup;
+    public categories = categories;
+    public levels = levels;
+    public types = types;
+    public dateConfig = {
+        isAnimated: true,
+        dateInputFormat: 'DD/MM/YYYY'
+    };
 
-  ngOnInit(): void {
-    this.updateStudentData();
-    const id = this.actRoute.snapshot.paramMap.get('id');
-    this.crudApi.getStudy(id).valueChanges().subscribe(data => {
-      data.date = new Date(data.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
-      this.editForm.setValue(data);
-    });
-  }
+    constructor (
+        private crudApi: CrudService,
+        private fb: FormBuilder,
+        private location: Location,
+        private actRoute: ActivatedRoute,
+        private router: Router,
+        private toastr: ToastrService
+    ) { }
 
-  get subject(): AbstractControl {
-    return this.editForm.get('subject');
-  }
+    ngOnInit (): void {
+        this.updateStudentData();
+        const id = this.actRoute.snapshot.paramMap.get('id');
+        this.crudApi.getStudy(id).valueChanges().subscribe(data => {
+            data.date = new Date(data.date).toLocaleString('pt-BR', {timeZone: 'UTC'}).substr(0, 10);
+            this.editForm.setValue(data);
+        });
+    }
 
-  get category(): AbstractControl {
-    return this.editForm.get('category');
-  }
+    get subject (): AbstractControl {
+        return this.editForm.get('subject');
+    }
 
-  get date(): AbstractControl {
-    return this.editForm.get('date');
-  }
+    get category (): AbstractControl {
+        return this.editForm.get('category');
+    }
 
-  get time(): AbstractControl {
-    return this.editForm.get('time');
-  }
+    get date (): AbstractControl {
+        return this.editForm.get('date');
+    }
 
-  get level(): AbstractControl {
-    return this.editForm.get('level');
-  }
+    get time (): AbstractControl {
+        return this.editForm.get('time');
+    }
 
-  get type(): AbstractControl {
-    return this.editForm.get('type');
-  }
+    get level (): AbstractControl {
+        return this.editForm.get('level');
+    }
 
-  get note(): AbstractControl {
-    return this.editForm.get('note');
-  }
+    get type (): AbstractControl {
+        return this.editForm.get('type');
+    }
 
-  updateStudentData(): void {
-    this.editForm = this.fb.group({
-      subject: ['', [Validators.required, Validators.minLength(5)]], // eslint-disable-line @typescript-eslint/unbound-method
-      category: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
-      date: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
-      time: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
-      level: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
-      type: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
-      note: [''], // eslint-disable-line @typescript-eslint/unbound-method
-    })
-  }
+    get note (): AbstractControl {
+        return this.editForm.get('note');
+    }
 
-  goBack(): void {
-    this.location.back();
-  }
+    updateStudentData (): void {
+        this.editForm = this.fb.group({
+            subject: ['', [Validators.required, Validators.minLength(5)]], // eslint-disable-line @typescript-eslint/unbound-method
+            category: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+            date: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+            time: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+            level: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+            type: ['', Validators.required], // eslint-disable-line @typescript-eslint/unbound-method
+            note: [''], // eslint-disable-line @typescript-eslint/unbound-method
+        });
+    }
 
-  updateForm(): void {
-    this.crudApi.updateStudy(this.editForm.value);
-    this.toastr.success(`${this.editForm.controls['subject'].value as string} updated successfully`);
-    void this.router.navigate(['study']);
-  }
+    goBack (): void {
+        this.location.back();
+    }
+
+    updateForm (): void {
+        this.crudApi.updateStudy(this.editForm.value);
+        this.toastr.success(`${this.editForm.controls['subject'].value as string} updated successfully`);
+        void this.router.navigate(['study']);
+    }
 }
